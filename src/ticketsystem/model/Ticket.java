@@ -65,6 +65,6 @@ public class Ticket {
     }
     @Override
     public String toString(){
-        return "Ticket " + ticketId + " : "  + category + " for " + customerName + " [ " + status + ", " + priority + "]";
+        return "Ticket " + ticketId + " : of Category "  + category + " for customer " + customerName + " [ Status: " + status + ", Priority: " + priority + "]";
     }
 }
