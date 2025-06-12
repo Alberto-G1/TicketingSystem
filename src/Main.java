@@ -42,6 +42,53 @@ public class Main {
         System.out.println("Ticket " + ticket + " was successfully created!");
     }
 
+    // View tickets
+    private static void viewTickets(){
+        if (tickets.isEmpty()){
+            System.out.println("No tickets found");
+            return;
+        }
+        System.out.println("\nAll Tickets");
+        for (Ticket t: tickets){
+            System.out.println(t);
+        }
+    }
+
+    //GETTING THE TICKETS
+    private static Ticket findTicketById(int id){
+        for (Ticket t : tickets){
+            if (t.getTicketId() == id){
+                return t;
+            }
+        }
+        return null;
+    }
+
+    // UPDATING TICKET
+    private static void updateTicket(){
+        //Getting Ticket to update
+        System.out.print("Enter ID for the Ticket to update: ");
+        int id = scanner.nextInt();
+        Ticket ticket = findTicketById(id);
+        if (ticket == null){
+            System.out.println("Ticket is not foud");
+            return;
+        }
+
+        //Updating current status if ticket id is found
+        System.out.println("Current status: " + ticket.getStatus());
+        System.out.print("Enter new status (OPEN, PENDING, CLOSED): ");
+        String statusString = scanner.nextLine();
+
+
+        //Updating priority of the ticket
+        System.out.println("Current Priority: " + ticket.getPriority());
+        System.out.print("Enter the new Priority (LOW, MEDIUM, HIGH): ");
+        String priorityString = scanner.nextLine();
+
+        System.out.println("Ticket Successfully updated to " + ticket);
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Hello and welcome!");
