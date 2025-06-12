@@ -39,7 +39,7 @@ public class Main {
 
         Ticket ticket = new Ticket(customerName, contact, category, description);
         tickets.add(ticket);
-        System.out.println("Ticket " + ticket + " was successfully created!");
+        System.out.println(ticket + " was successfully created!");
     }
 
     // View tickets
@@ -89,13 +89,72 @@ public class Main {
         System.out.println("Ticket Successfully updated to " + ticket);
     }
 
+    // DELETING TICKET
+    private static void deleteTicket(){
+        System.out.print("Enter ID for the ticket to delete: ");
+        int id = scanner.nextInt();
+        Ticket ticket = findTicketById(id);
+        if (ticket == null){
+            System.out.println("Ticket not found");
+            return;
+        }
+        tickets.remove(ticket);
+        System.out.println("Ticket successfully deleted.");
+    }
+
+    //SEARCH OF TICKETS
+    private static void searchTickets(){
+        System.out.print("Search by customer name: ");
+        String searchName = scanner.nextLine().toLowerCase();
+
+        List<Ticket> foundTickets = new ArrayList<>();
+        for (Ticket t  : tickets){
+            if (t.getCustomerName().toLowerCase().contains(searchName)){
+                foundTickets.add(t);
+            }
+        }
+        if (foundTickets.isEmpty()){
+            System.out.println("Customer " + searchName + " has no tickets ");
+        } else {
+            System.out.println("The found tickets for :" + searchName);
+            for (Ticket t : foundTickets){
+                System.out.println(t);
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
+        boolean running = true;
+        while (running) {
+            printMenu();
+            String choice = scanner.nextLine();
 
-            System.out.println("i = " + i);
+            switch (choice) {
+                case "1":
+                    createTicket();
+                    break;
+                case "2":
+                    viewTickets();
+                    break;
+                case "3":
+                    updateTicket();
+                    break;
+                case "4":
+                    deleteTicket();
+                    break;
+                case "5":
+                    searchTickets();
+                    break;
+                case "0":
+                    running = false;
+                    System.out.println("Exiting system......");
+                    break;
+                default:
+                    System.out.println("Invalid choice....Please try again.");
+            }
         }
         scanner.close();
     }
