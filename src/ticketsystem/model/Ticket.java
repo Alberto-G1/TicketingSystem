@@ -26,7 +26,7 @@ public class Ticket {
         this.priority = Priority.MEDIUM;
     }
 
-    //Getters
+    // Getters and Setters
 
     public void setStatus(Status status){
         this.status = status;
