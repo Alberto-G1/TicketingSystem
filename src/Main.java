@@ -79,12 +79,16 @@ public class Main {
         System.out.println("Current status: " + ticket.getStatus());
         System.out.print("Enter new status (OPEN, PENDING, CLOSED): ");
         String statusString = scanner.nextLine();
+        Status newStatus = Status.valueOf(statusString.toUpperCase());
+        ticket.setStatus(newStatus);
 
 
         //Updating priority of the ticket
         System.out.println("Current Priority: " + ticket.getPriority());
         System.out.print("Enter the new Priority (LOW, MEDIUM, HIGH): ");
         String priorityString = scanner.nextLine();
+        Priority newPriority = Priority.valueOf(priorityString.toUpperCase());
+        ticket.setPriority(newPriority);
 
         System.out.println("Ticket Successfully updated to " + ticket);
     }
